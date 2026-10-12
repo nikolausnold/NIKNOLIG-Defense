@@ -1,0 +1,76 @@
+# NIKNOLIG
+
+Eigenständiges Android-Entwicklungsgerüst für NIKNOLIG und Elektro-Engel. Der
+aktuelle Bildschirm ist eine Vorschau; BLE, Gerätevertrauen,
+Sicherheitsfreigaben und produktive Funktionen sind noch nicht implementiert.
+
+## Build-Basis
+
+- JDK 17
+- Gradle Wrapper 8.13
+- Android Gradle Plugin 8.11.1
+- Kotlin Android Plugin 2.2.21
+- Android SDK / compile SDK 35
+
+Debug-Build starten:
+
+```sh
+./gradlew :app:assembleDebug
+```
+
+Der [Android-Build-Workflow](https://github.com/nikolausnold/NIKNOLIG/actions/workflows/android-build.yml)
+erstellt und prüft die Debug-APK. Nach einem erfolgreichen Lauf findest du das
+Artifact `niknolig-debug-apk-<run_id>-<run_attempt>` unter **Artifacts** auf der
+Workflow-Run-Seite. Es enthält
+`app/build/outputs/apk/debug/app-debug.apk` und ist 14 Tage verfügbar.
+
+## Support
+
+Die App bietet technischen Support per E-Mail an **n_nold@hotmail.com**. Zahlungsfragen
+werden nicht über diesen Support bearbeitet; bitte wende dich dafür an den
+Zahlungsanbieter oder Händler. Sende keine Passwörter oder Zahlungsdaten an den
+technischen Support.
+
+## Website
+
+Die statische Website liegt in `index.html` und `styles.css`. Sie benötigt weder
+einen Build-Schritt noch externe JavaScript-Bibliotheken. Für günstiges Hosting kann
+GitHub Pages verwendet werden. Der Workflow
+[`Deploy website`](https://github.com/nikolausnold/NIKNOLIG/actions/workflows/deploy-website.yml)
+veröffentlicht bei Änderungen an der Website auf `main` nur `index.html` und
+`styles.css`, `robots.txt`, `sitemap.xml` und die Website-Assets; ein manueller
+Start ist ebenfalls möglich. Das lautlose, zehnsekündige NIKNOLIG-Intro ist als
+SVG/CSS-Animation in `assets/niknolig-intro.svg` umgesetzt, wird von GitHub Pages
+mitveröffentlicht und benötigt keine hochgeladene MP4-Datei.
+Bei aktivierter Einstellung für reduzierte Bewegung wird die Animation statisch
+als vollständiges Logo dargestellt. Aktiviere unter
+[Repository-Einstellungen → Pages](https://github.com/nikolausnold/NIKNOLIG/settings/pages)
+als Veröffentlichungsquelle **GitHub Actions**. Nach einem erfolgreichen Lauf zeigt
+der Workflow die veröffentlichte URL an. `robots.txt` und `sitemap.xml` werden
+mitveröffentlicht, damit Suchmaschinen die Website finden können. Für eine
+Indexierungsanfrage kannst du die Website in
+[Google Search Console](https://search.google.com/search-console/) hinzufügen und
+dort die Sitemap `https://nikolausnold.github.io/NIKNOLIG/sitemap.xml` einreichen.
+Verfügbarkeit und Kosten hängen von Repository-Sichtbarkeit und GitHub-Tarif ab.
+
+Vor einer öffentlichen Veröffentlichung müssen die rechtlich erforderlichen
+Betreiber- und Datenschutzangaben ergänzt und geprüft werden. Diese Angaben wurden
+nicht erfunden oder als fertige Rechtsseiten ausgegeben.
+
+## Entwicklungs- und Freigabestatus
+
+Die Android-App ist ein einzelner Activity-Prototyp. Es gibt derzeit keinen
+BLE-Client, Connection Manager, Verbindungszustandsautomaten, Authentifizierung,
+Autorisierung oder Gerätevertrauens- und Freigabemodell. Das Manifest deklariert
+keine Bluetooth-Berechtigungen; es werden keine Gerätezugriffe ausgeführt. Die
+Statusanzeige ist eine Vorschau und kein Nachweis einer Geräteverbindung.
+
+Im Repository sind derzeit keine Unit- oder Instrumentierungstests vorhanden.
+Der Android-Workflow baut ein Debug-APK und prüft dessen Integrität; das ersetzt
+weder Funktionstests noch eine SecurityChain-Freigabe. Zustandsübergänge,
+Berechtigungen, Fehlerzustände und Vertrauen müssen vor einer BLE-Implementierung
+explizit entworfen und getestet werden. KI-gestützte Experimente dürfen keine
+produktiven Sicherheitsregeln automatisch verändern.
+
+Das Projekt ist damit noch nicht releasefähig. Es gibt keine verifizierte
+Produktionsfreigabe oder SecurityChain-P0-Testabdeckung.
