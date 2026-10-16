@@ -24,6 +24,25 @@ Artifact `niknolig-debug-apk-<run_id>-<run_attempt>` unter **Artifacts** auf der
 Workflow-Run-Seite. Es enthält
 `app/build/outputs/apk/debug/app-debug.apk` und ist 14 Tage verfügbar.
 
+## Automatische Abhängigkeitsupdates
+
+[Dependabot](.github/dependabot.yml) prüft wöchentlich die Gradle-Abhängigkeiten
+(einschließlich Android- und Kotlin-Plugins) sowie GitHub Actions und öffnet
+Update-Pull-Requests. Pro Ökosystem sind höchstens fünf Versionsupdate-PRs
+gleichzeitig offen. Die Konfiguration wird nach Übernahme in den Standardbranch
+wirksam.
+
+Der bestehende Android-Build-Workflow prüft die Update-PRs mit einem Debug-Build
+und einer APK-Prüfung. Updates werden nicht automatisch zusammengeführt;
+Kompatibilität und erfolgreiche Prüfungen müssen vor der Übernahme geprüft werden.
+Der Gradle Wrapper und das Android SDK werden durch diese Konfiguration nicht
+automatisch aktualisiert.
+
+Status und manuelle Update-Prüfungen sind unter
+[Dependabot im Repository](https://github.com/nikolausnold/NIKNOLIG-Defense/network/updates)
+verfügbar. Eine Synchronisierung mit dem NIKNOLIG-Monorepo oder automatische
+Updates installierter Apps sind damit nicht verbunden.
+
 ## Support
 
 Die App bietet technischen Support per E-Mail an **n_nold@hotmail.com**. Zahlungsfragen
